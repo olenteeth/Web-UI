@@ -10,9 +10,6 @@
         function controlLED(led, state) {
             ws.send(led + '_' + state);
         }
-        ws.on('message', function(test){
-    console.log("Nhận tin từ Client nào đó:" + test);
-    });
     </script>
 </head>
 <body>
