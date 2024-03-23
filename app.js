@@ -19,7 +19,7 @@ wss.on('connection', function connection(nhantin) {
 });
 });
 
-  ws.on('close', function close() {
+  wss.on('close', function close() {
     console.log('Client disconnected');
   });
 
