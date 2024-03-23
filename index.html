@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control LEDs</title>
     <script>
-        let ws = new WebSocket('ws://sottakiri1.netlify.app');
+        let ws = new WebSocket('https://sottakiri1.netlify.app');
 
         function controlLED(led, state) {
             ws.send(led + '_' + state);
