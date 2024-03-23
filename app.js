@@ -5,7 +5,7 @@ const app = express();
 const server = require('http').Server(app);
 const wss = new WebSocket.Server({ server:server });
 
-app.use('/',express.static('index.html'));
+app.use('/',express.static('public'));
 
 wss.on('connection', function connection(ws) {
   console.log('Client connected');
