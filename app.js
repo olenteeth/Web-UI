@@ -1,4 +1,4 @@
-express = require('express');
+/*express = require('express');
 const WebSocket = require('ws');
 
 const app = express();
@@ -22,4 +22,26 @@ wss.on('connection', function connection(ws) {
 
 server.listen(3000, function listening() {
   console.log('Server started on port 3000');
+});*/
+
+const WebSocket = require('ws');
+
+const PORT = 3000;
+
+const wsServer = new WebSocket.Server({
+    port: PORT
 });
+
+wsServer.on('connection', function(nhantin){
+    console.log("Ayo co nguoi moi vao");
+
+    nhantin.on('message', function(test){
+        console.log("Nhận tin từ Client nào đó:" + test);
+        
+        wsServer.clients.forEach(function(client){
+            client.send("Ai đó vừa nói:" + test);
+        });
+    });
+});
+
+console.log((new Date()) + "Server đang hoạt động ở port: " + PORT);
