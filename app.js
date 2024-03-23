@@ -13,9 +13,9 @@ wss.on('connection', function connection(nhantin) {
   nhantin.on('message', function(test){
     console.log("Nhận tin từ Client nào đó:" + test);
     
-    /*wss.clients.forEach(function(client){
+    wss.clients.forEach(function(client){
         client.send("Ai đó vừa nói:" + test);
-    });*/
+    });
 });
 });
 
