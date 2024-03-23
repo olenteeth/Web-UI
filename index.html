@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control LEDs</title>
+    <script>
+        let ws = new WebSocket('ws://localhost:3000');
+
+        function controlLED(led, state) {
+            ws.send(led + '_' + state);
+        }
+    </script>
+</head>
+<body>
+    <h1>Control LEDs</h1>
+    <button onclick="controlLED('LED1', 'ON')">LED 1 ON</button>
+    <button onclick="controlLED('LED1', 'OFF')">LED 1 OFF</button>
+    <button onclick="controlLED('LED2', 'ON')">LED 2 ON</button>
+    <button onclick="controlLED('LED2', 'OFF')">LED 2 OFF</button>
+    <button onclick="controlLED('LED3', 'ON')">LED 3 ON</button>
+    <button onclick="controlLED('LED3', 'OFF')">LED 3 OFF</button>
+    <button onclick="controlLED('LED4', 'ON')">LED 4 ON</button>
+    <button onclick="controlLED('LED4', 'OFF')">LED 4 OFF</button>
+</body>
+</html>
