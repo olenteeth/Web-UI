@@ -5,7 +5,7 @@ const app = express();
 const server = require('http').Server(app);
 const wss = new WebSocket.Server({ server:server });
 
-app.use('/',express.static('public'));
+app.use('/',express.static('index.html'));
 
 wss.on('connection', function connection(nhantin) {
   console.log("Ayo co nguoi moi vao");
@@ -13,9 +13,9 @@ wss.on('connection', function connection(nhantin) {
   nhantin.on('message', function(test){
     console.log("Nhận tin từ Client nào đó:" + test);
     
-    /*wss.clients.forEach(function(client){
+    wss.clients.forEach(function(client){
         client.send("Ai đó vừa nói:" + test);
-    });*/
+    });
 });
 });
 

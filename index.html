@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control LEDs</title>
     <script>
-        let ws = new WebSocket('wss://web-ui-n449.onrender.com');
-
+        let ws = new WebSocket('wss://web-ui-production-154e.up.railway.app/');
+        //let ws = new WebSocket('ws://127.0.0.1:3000');
         function controlLED(led, state) {
             ws.send(led + '_' + state);
         }
