@@ -5,7 +5,7 @@ const app = express();
 const server = require('http').Server(app);
 const wss = new WebSocket.Server({ server:server });
 
-app.use('/',express.static('index.html'));
+app.use(express.static('index.html'));
 
 wss.on('connection', function connection(nhantin) {
   console.log("Ayo co nguoi moi vao");
