@@ -23,6 +23,6 @@ wss.on('connection', function connection(nhantin) {
     console.log('Client disconnected');
   });
 
-server.listen(3000, function listening() {
+server.listen(80, function listening() {
   console.log('Server started on port 3000');
 });
