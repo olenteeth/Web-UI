@@ -5,7 +5,7 @@ const app = express();
 const server = require('http').Server(app);
 const wss = new WebSocket.Server({ server:server });
 
-app.use(express.static('index.html'));
+app.use('/',express.static('public'));
 
 wss.on('connection', function connection(nhantin) {
   console.log("Ayo co nguoi moi vao");
@@ -23,6 +23,6 @@ wss.on('connection', function connection(nhantin) {
     console.log('Client disconnected');
   });
 
-server.listen(80, function listening() {
+server.listen(3000, function listening() {
   console.log('Server started on port 3000');
 });
