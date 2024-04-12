@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control LEDs</title>
     <script>
-        let ws = new WebSocket('wss://web-ui-n449.onrender.com');
+        let ws = new WebSocket('ws://nhom7.ddns.net:3000');
         //let ws = new WebSocket('ws://127.0.0.1:3000');
         function controlLED(led, state) {
-            ws.send(led + '_' + state);
+            ws.send(led + '_' + state + '_ESP32');
         }
     </script>
 </head>
@@ -23,4 +23,52 @@
     <button onclick="controlLED('LED4', 'ON')">LED 4 ON</button>
     <button onclick="controlLED('LED4', 'OFF')">LED 4 OFF</button>
 </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Data</title>
+    <script>
+      // Mở kết nối WebSocket
+      var socket = new WebSocket('ws://nhom7.ddns.net:3000');
+    
+      // Xử lý khi kết nối mở
+      socket.onopen = function(event) {
+        console.log('WebSocket opened');
+      };
+    
+      // Xử lý khi nhận được dữ liệu từ server
+      socket.onmessage = function(event) {
+        try {
+      var data = JSON.parse(event.data);
+      if (data && typeof data === 'object') {
+        if (data.temperature !== undefined && data.humidity !== undefined) {
+          document.getElementById('temperature').innerText = 'Nhiệt độ: ' + data.temperature + '°C';
+          document.getElementById('humidity').innerText = 'Độ ẩm: ' + data.humidity + '%';
+        } else {
+          console.error('Invalid JSON data format: Missing temperature or humidity');
+        }
+      } else {
+        console.error('Invalid JSON data');
+      }
+    } catch (error) {
+      console.error('Error parsing JSON:', error);
+    }
+      };
+    
+      // Xử lý khi có lỗi
+      socket.onerror = function(error) {
+        console.error('WebSocket Error:', error);
+      };
+    
+      // Xử lý khi kết nối đóng
+      socket.onclose = function(event) {
+        console.log('WebSocket closed');
+      };
+    </script>
+    </head>
+    <body>
+      <h1>Dữ liệu nhiệt độ và độ ẩm</h1>
+      <div id="temperature">Nhiệt độ:</div>
+      <div id="humidity">Độ ẩm:</div>
+    </body>
 </html>
